@@ -1,0 +1,23 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+pushd $DIR &> /dev/null
+
+if [ -e donotcall_app.pid ]
+then
+	echo "Already running"
+else
+	echo "Starting..."
+	echo "Starting..." >> data/blimpwatch.log
+	nohup python blimpwatch.py &> nohup.out &
+	if [ "$?" -eq 0 ]
+	then
+		echo $! > blimpwatch.pid
+		echo "Started"
+		echo "Started" >> data/blimpwatch.log
+	else
+		echo "Failed to start"
+	fi
+fi
+
+popd &> /dev/null

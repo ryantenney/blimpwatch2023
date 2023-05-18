@@ -1,0 +1,16 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+pushd $DIR &> /dev/null
+
+if [ -e blimpwatch.pid ]
+then
+	echo "Stopping..."
+	echo "Stopping..." >> data/blimpwatch.log
+	kill $(cat blimpwatch.pid)
+	rm blimpwatch.pid
+else
+	echo "Not running"
+fi
+
+popd &> /dev/null

@@ -1,0 +1,4 @@
+config.py
+*.pyc
+data/blimpwatch.log
+nohup.out
